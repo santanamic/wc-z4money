@@ -1,0 +1,32 @@
+{
+    "name": "santanamic/php-z4money-sdk",
+    "description": "PHP SDK for integration with the Z4Money Payment API",
+    "type": "library",
+    "keywords": [
+        "Z4Money",
+        "php",
+        "sdk",
+        "api",
+        "e-commerce",
+        "payments",
+		"credtcard",
+		"boleto"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.15"
+    },
+    "autoload": {
+        "psr-4": { "Z4Money\\" : "src/Z4Money" }
+    },
+    "scripts": {
+		"lint": "php-cs-fixer fix --diff --dry-run",
+        "fix": "php-cs-fixer fix"
+    }
+}
