@@ -12,7 +12,7 @@ class GetWebhookRequest extends AbstractRequest
         $slug = parent::getData()->getSlug();
 
 		parent::setMethod('GET');
-		parent::setResourcePath('estabelecimentos/configuracoes/' . $slug);
+		parent::setResourcePath('estabelecimentos/configuracao/' . $slug);
         parent::getClient()->getConfig()->setHost($url);
 
         return parent::sendRequest();

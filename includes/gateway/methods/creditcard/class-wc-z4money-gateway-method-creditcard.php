@@ -44,7 +44,7 @@ if ( ! class_exists( 'Wc_Z4Money_Gateway_Method_CreditCard' ) ) {
 			$this->interest             = $this->get_option( 'interest' );
 			$this->installment_type     = $this->get_option( 'installment_type' );
 			$this->debug                = $this->get_option( 'debug' );
-			$this->icon                 = plugins_url( 'assets/public/img/logo_horizontal.png', __FILE__ );
+			$this->icon                 = plugins_url( 'assets/public/img/logo_horizontal_min.png', __FILE__ );
 
 			parent::init_gateway();
 			

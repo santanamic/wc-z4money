@@ -25,10 +25,6 @@ if ( ! class_exists( 'Wc_Z4Money_Base_Method_CredtCard' ) ) {
 			$html         = '';        
 			$installments = apply_filters( STATIC::FILTER_MAX_INSTALLMENTS, $this->installments, $order_total );
 
-			if ( '1' == $installments ) {
-				return $html;
-			}
-
 			$html .= '<select id="z4money-installments" name="' . STATIC::CARD_INSTALLMENTS .'" style="font-size: 1.5em; padding: 4px; width: 100%;">';
 
 			$interest_rate = $this->get_valid_value( $this->interest_rate ) / 100;

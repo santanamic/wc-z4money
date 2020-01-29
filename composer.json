@@ -1,6 +1,6 @@
 {
     "name": "santanamic/wc-z4money",
-    "version": "1.0.0",
+    "version": "1.1.3",
     "type": "wordpress-plugin",
     "description": "Take payments on CredtCard and Boleto using Z4Money.",
     "keywords": [
@@ -24,7 +24,10 @@
     },
     "autoload": {
         "classmap": [ "includes", "vendor/Z4Money", "vendor/class-wc-checkout-brazilian-fields" ],
-		"files": [ "includes/functions/wc-z4money-admin.php","includes/functions/wc-z4money-plugin.php" ]
+		"files": [
+			"includes/functions/wc-z4money-admin.php",
+			"includes/functions/wc-z4money-plugin.php"						
+		]
     },
     "scripts": {
         "docs": "docsify serve docs"

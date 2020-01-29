@@ -61,7 +61,7 @@ if ( ! function_exists( 'wc_z4money_admin_links' ) ) {
 	{
 
 	$links[] = '<a href="' . esc_url( admin_url('admin.php?page=wc-settings&tab=checkout' ) ) . '">' . __( 'Settings', 'wc-z4money' ) . '</a>';
-	$links[] = '<a href="https://site.latamgateway.com">' . __('Support', 'wc-z4money') . '</a>';
+	$links[] = '<a href="https://www.z4money.com.br/contato/">' . __('Support', 'wc-z4money') . '</a>';
 	
 	return $links;
 	

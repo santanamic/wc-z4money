@@ -38,8 +38,8 @@ if ( ! class_exists( 'Wc_Checkout_Brazilian_Fields' ) ) {
 				if ( ! get_query_var( 'order-received' ) ) {
 					$suffix     = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-					wp_enqueue_script( 'wc-checkout-brazilian-fields', static::get_file_url( dirname( __FILE__ ) . '/assets/js/frontend/checkout' . $suffix . '.js' ), array( 'jquery' ), '1.0.0', true );
-					wp_enqueue_script( 'jquery-mask', static::get_file_url( dirname( __FILE__ ) . '/assets/js/jquery.mask/jquery.mask' . $suffix . '.js' ), array( 'jquery' ), '1.14.10', true );
+					wp_enqueue_script( 'wc-checkout-brazilian-fields', plugin_dir_url( __FILE__ ) . '/assets/js/frontend/checkout' . $suffix . '.js', array( 'jquery' ), '1.0.0', true );
+					wp_enqueue_script( 'jquery-mask', plugin_dir_url( __FILE__ ) . '/assets/js/jquery.mask/jquery.mask' . $suffix . '.js', array( 'jquery' ), '1.14.10', true );
 
 					$fields = WC()->checkout()->checkout_fields;
 			
@@ -62,15 +62,6 @@ if ( ! class_exists( 'Wc_Checkout_Brazilian_Fields' ) ) {
 
 				}
 			}
-		}
-		
-		public static function get_file_url( $file = __FILE__ ) 
-		{
-			$file_path = str_replace( "\\", "/", str_replace( str_replace( "/", "\\", WP_CONTENT_DIR ), "", $file ) );
-			
-			if ( $file_path )
-				return content_url( $file_path );
-			return false;
 		}
 		
 		/**

@@ -18,8 +18,8 @@ if ( ! class_exists( 'Wc_Z4Money_Gateway' ) ) {
 		use Wc_Z4Money_Base_Method_CredtCard;
 		use Wc_Z4Money_Base_Method_Boleto;
 		
-		protected $api;
-		protected $logger;
+		public $api;
+		public $logger;
 	
 		/**
 		 * Init payment method.
@@ -59,11 +59,12 @@ if ( ! class_exists( 'Wc_Z4Money_Gateway' ) ) {
 			$this->api = new Wc_Z4Money_Api( $this );
 			
 			$config_webook = get_option( 'IS_Z4Money_URL', 'no' );
-		
-			if( $config_webook !== 'yes' ) {
-				$return_webhook = $this->api->check_webhook();				
+			
+			if( $config_webook !== 'yes' && $this->is_available() === true && is_admin() ) {
+				$return_webhook = $this->api->add_webhook();
 				if( $return_webhook['success'] == true ) {
 					add_option( 'IS_Z4Money_URL', 'yes' );
+					update_option( 'IS_Z4Money_URL', 'yes' );
 				}
 			}						
 			

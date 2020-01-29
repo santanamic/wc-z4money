@@ -67,7 +67,7 @@ class Wc_Z4Money_Api {
 			$request = $requestPagamento->run();
 			return $request;
 		} catch (Exception $e) {
-			echo 'Exception when calling Order request->run: ', $e->getMessage(), PHP_EOL;
+			$this->gateway->logger->add( 'Exception when calling Order request->run: ' . $e->getMessage() );
 		}
 		
 	}
@@ -89,7 +89,7 @@ class Wc_Z4Money_Api {
 			$request = $requestStatus->run();
 			return $request;
 		} catch (Exception $e) {
-			echo 'Exception when calling Status request->run: ', $e->getMessage(), PHP_EOL;
+			$this->gateway->logger->add( 'Exception when calling Status request->run: ' . $e->getMessage() );
 		}
 		
 	}
@@ -111,7 +111,7 @@ class Wc_Z4Money_Api {
 			$request = $requestRefund->run();
 			return $request;
 		} catch (Exception $e) {
-			echo 'Exception when calling Refund request->run: ', $e->getMessage(), PHP_EOL;
+			$this->gateway->logger->add( 'Exception when calling Refund request->run: ' . $e->getMessage() );
 		}
 		
 	}
@@ -232,7 +232,7 @@ class Wc_Z4Money_Api {
 	 */
 	public function get_webhook_data() 
 	{
-		$data    = array( 'slug' => 'Wc_Z4Money', 'value' => WC()->api_request_url( 'Z4Money' ) );	
+		$data    = array( 'slug' => 'url_webhook', 'value' => WC()->api_request_url( 'Z4Money' ) );	
 		$webhook = new Webhook( $data );
 		
 		return $webhook;
@@ -254,35 +254,32 @@ class Wc_Z4Money_Api {
 		
 		try {
 			$request = $requestGetWebhook->run();
-			if( $request['success'] == false ) {
-				return $this->add_webhook( $webhook );
-			} else {
-				return $request;
-			}
+			return $request;
 		} catch (Exception $e) {
-			echo 'Exception when calling Check Webhook request->run: ', $e->getMessage(), PHP_EOL;
+			$this->gateway->logger->add( 'Exception when calling Check Webhook request->run: ' . $e->getMessage() );
+
 		}
 
 	}
-	
 	
 	/**
 	 * Add webhook url.
 	 *
 	 * @return array
 	 */
-	public function add_webhook( $webhook ) 
+	public function add_webhook() 
 	{
 		$config  = new Configuration();
 		$config->setBearerAuth( $this->get_token() );
 
+		$webhook           = $this->get_webhook_data();
 		$requestAddWebhook = new AddWebhookRequest( $webhook, $config, true );
 
 		try {
 			$request = $requestAddWebhook->run();				
 			return $request;
 		} catch (Exception $e) {
-			echo 'Exception when calling Add Webhook request->run: ', $e->getMessage(), PHP_EOL;
+			$this->gateway->logger->add( 'Exception when calling Add Webhook request->run: ' . $e->getMessage() );
 		}
 	}
 	

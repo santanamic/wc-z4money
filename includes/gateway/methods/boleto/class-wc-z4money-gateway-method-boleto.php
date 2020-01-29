@@ -36,7 +36,7 @@ if ( ! class_exists( 'Wc_Z4Money_Gateway_Method_Boleto' ) ) {
 			$this->is_testmode          = $this->get_option( 'testmode' );
 			$this->expiration           = $this->get_option( 'expiration' );
 			$this->debug                = $this->get_option( 'debug' );
-			$this->icon                 = plugins_url( 'assets/public/img/logo_horizontal.png', __FILE__ );
+			$this->icon                 = plugins_url( 'assets/public/img/logo_horizontal_min.png', __FILE__ );
 
 			parent::init_gateway();
         }
@@ -103,9 +103,9 @@ if ( ! class_exists( 'Wc_Z4Money_Gateway_Method_Boleto' ) ) {
 					'description' => __( 'Customize payment options', 'wc-z4money' ),
 				),
 				'expiration' => array(
-					'title'       => __( 'Boleto Expiration', 'wc_z4money_boleto' ),
+					'title'       => __( 'Boleto Expiration', 'wc-z4money' ),
 					'type'        => 'number',
-					'description' => __( 'Days for Boleto expiration, after issuance.', 'wc_z4money_boleto' ),
+					'description' => __( 'Days for Boleto expiration, after issuance.', 'wc-z4money' ),
 					'default'     => '5',
 					'desc_tip'    => true,
 				),
