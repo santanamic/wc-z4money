@@ -24,10 +24,7 @@
     },
     "autoload": {
         "classmap": [ "includes", "vendor/Z4Money", "vendor/class-wc-checkout-brazilian-fields" ],
-		"files": [
-			"includes/functions/wc-z4money-admin.php",
-			"includes/functions/wc-z4money-plugin.php"						
-		]
+		"files": [ "includes/functions/wc-z4money-admin.php","includes/functions/wc-z4money-plugin.php" ]
     },
     "scripts": {
         "docs": "docsify serve docs"
