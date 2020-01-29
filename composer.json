@@ -1,0 +1,26 @@
+{
+    "name": "santanamic/wc-z4money",
+    "version": "1.0.4",
+    "type": "wordpress-plugin",
+    "description": "Take payments on CredtCard and Boleto using Z4Money.",
+    "keywords": [
+		"Z4Money",
+		"e-commerce",
+		"payments",
+		"credtcard",
+		"boleto",
+		"Brazil"
+    ],
+    "homepage": "https://github.com/santanamic/wc-z4money",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "WILLIAN SANTANA",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : ">=7.0"
+    }
+}
+
