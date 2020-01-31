@@ -36,7 +36,7 @@ if ( ! class_exists( 'Wc_Z4Money_Gateway' ) ) {
 			$this->description = $this->get_option( 'description' );
 			$this->enabled     = $this->get_option( 'enabled' );
 			$this->has_fields  = true;
-			$this->supports    = array( 'products', 'refunds' );
+			$this->supports    = array( 'products', 'refunds', 'cancellation' );
 
 			$this->debug       = 'yes' === $this->get_option( 'debug' );
 			$this->is_enabled  = 'yes' === $this->get_option( 'enabled' );
@@ -71,29 +71,39 @@ if ( ! class_exists( 'Wc_Z4Money_Gateway' ) ) {
 		}
 
 		/**
-		 * Make the refund
+		 * Process a refund if supported.
 		 *
-		 * @access public
-		 * @param string    $order_id
-		 * @return boolean
+		 * @param  int    $order_id Order ID.
+		 * @param  float  $amount Refund amount.
+		 * @param  string $reason Refund reason.
+		 * @return bool|WP_Error
 		 */ 
 		 
-		public function refunded_payment( $order_id ) 
+		public function process_refund( $order_id, $amount = null, $reason = '' ) 
 		{
-			$this->logger->add( sprintf(__('Order refund process: %s', 'wc-z4money'), $order_id) );
+			$this->logger->add( sprintf(__('Order refund process: %s', 'wc-z4money'), $order_id ) );
+			$this->logger->add( sprintf(__('Order refund process $amount: %s', 'wc-z4money'), $amount ) );
 			
 			$order            = wc_get_order( $order_id );
 			$payment_id       = $order->get_meta( 'PAYMENT_ID' );
 			$order_status     = $this->api->get_status( $payment_id );
 			$order_status_id  = $order_status['venda']['status']['id'];
+			$real_amount      = $amount ?: $order->order_total;
+			$cents_amount     = ( $amount ?: $order->order_total ) * 100;
 
 			switch ( $order_status_id ) {
 				case '2': 
 				case '5': 
 				case '7': 
-					$this->api->do_payment_refund( $payment_id );
-					$order->add_order_note( __('Refund request sent to the Z4Money. See the Z4Money administrative panel for more details.', 'wc-z4money') );
-					$order->save();
+					$request = $this->api->do_payment_refund( $payment_id, $cents_amount );
+					$this->logger->add( sprintf(__('Refund return request: %s', 'wc-z4money'), var_export( $request, true ) ) );
+
+					if( $request['success'] === true ) {
+						$order->add_order_note( sprintf(__( 'Refund request sent to the Z4Money: value %s. See the Z4Money administrative panel for more details.', 'wc-z4money' ), $real_amount ) );
+						return true;
+					} else {
+						return false;
+					}
 				break;
 			}
 			

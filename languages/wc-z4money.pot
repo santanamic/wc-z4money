@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Z4Money for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-29 15:34+0000\n"
+"POT-Creation-Date: 2020-01-30 15:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -59,31 +59,37 @@ msgstr ""
 msgid "Installments"
 msgstr ""
 
-#: includes/abstracts/abstract-class-wc-z4money.php:83
+#: includes/abstracts/abstract-class-wc-z4money.php:84
 #, php-format
 msgid "Order refund process: %s"
 msgstr ""
 
-#: includes/abstracts/abstract-class-wc-z4money.php:95
-msgid ""
-"Refund request sent to the Z4Money. See the Z4Money administrative panel for "
-"more details."
+#: includes/abstracts/abstract-class-wc-z4money.php:85
+#, php-format
+msgid "Order refund process $amount: %s"
 msgstr ""
 
-#: includes/abstracts/abstract-class-wc-z4money.php:118
+#: includes/abstracts/abstract-class-wc-z4money.php:97
+#, php-format
+msgid ""
+"Refund request sent to the Z4Money: value %s. See the Z4Money administrative "
+"panel for more details."
+msgstr ""
+
+#: includes/abstracts/abstract-class-wc-z4money.php:120
 #, php-format
 msgid "Z4Money Gateway received a URL notification: %s"
 msgstr ""
 
-#: includes/abstracts/abstract-class-wc-z4money.php:170
+#: includes/abstracts/abstract-class-wc-z4money.php:172
 msgid "Your payment was not processed."
 msgstr ""
 
-#: includes/abstracts/abstract-class-wc-z4money.php:176
+#: includes/abstracts/abstract-class-wc-z4money.php:178
 msgid "Your payment has been received successfully."
 msgstr ""
 
-#: includes/abstracts/abstract-class-wc-z4money.php:180
+#: includes/abstracts/abstract-class-wc-z4money.php:182
 msgid "Awaiting payment confirmation."
 msgstr ""
 

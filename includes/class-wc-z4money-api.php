@@ -217,10 +217,11 @@ class Wc_Z4Money_Api {
 	 *
 	 * @return array
 	 */
-	public function do_payment_refund( $payment_id ) 
+	public function do_payment_refund( $payment_id, $amount ) 
 	{
 		$id = new Id();
 		$id->setPaymentId( $payment_id );
+		$id->setAmount( $amount );
 
 		return $this->do_refund( $id );
 	}

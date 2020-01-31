@@ -298,7 +298,6 @@ if ( ! class_exists( 'Wc_Z4Money_Gateway_Method_Boleto' ) ) {
 			add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
 			add_action( 'woocommerce_thankyou_' . $this->id, array( $this, 'order_summary_preview' ) );
 			add_action( 'woocommerce_email_before_order_table', array( $this, 'email_instructions' ), 10, 3 );
-			add_action( 'woocommerce_order_status_refunded', array($this, 'refunded_payment') );
 			add_action( 'woocommerce_api_z4money', array( $this, 'webhook' ) );
 			
         }

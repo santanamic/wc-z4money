@@ -4,7 +4,7 @@
  * Plugin Name:       Z4Money for WooCommerce
  * Plugin URI:        https://github.com/santanamic/wc-z4money
  * Description:       Take payments using Z4Money.
- * Version:           1.1.3
+ * Version:           1.1.5
  * Author:            WILLIAN SANTANA
  * Author URI:        https://github.com/santanamic/
  * License:           GPL-2.0+
@@ -14,7 +14,7 @@
  */
 
 define( 'WC_Z4MONEY_NAME', 'WooCommerce Z4Money' );
-define( 'WC_Z4MONEY_VERSION', '1.1.3' );
+define( 'WC_Z4MONEY_VERSION', '1.1.5' );
 define( 'WC_Z4MONEY_DEBUG_OUTPUT', 0 );
 define( 'WC_Z4MONEY_BASENAME', plugin_basename( __FILE__ ) );
 define( 'WC_Z4MONEY_SLUG', plugin_basename( plugin_dir_path( __FILE__ ) ) );

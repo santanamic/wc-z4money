@@ -412,7 +412,6 @@ if ( ! class_exists( 'Wc_Z4Money_Gateway_Method_CreditCard' ) ) {
 			add_action( 'wp_enqueue_scripts', 'wc_z4money_method_creditcard_public_enqueue' );
 			add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
 			add_action( 'woocommerce_thankyou_' . $this->id, array( $this, 'thankyou_page' ) );
-			add_action( 'woocommerce_order_status_refunded', array($this, 'refunded_payment') );
 			add_action( 'woocommerce_api_z4money', array( $this, 'webhook' ) );
 
         }

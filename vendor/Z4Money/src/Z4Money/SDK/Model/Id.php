@@ -22,5 +22,17 @@ class Id
 
         return $this;
     }
+
+	public function getAmount()
+    {
+        return $this->container['amount'];
+    }
+
+    public function setAmount($amount)
+    {
+        $this->container['amount'] = $amount;
+
+        return $this;
+    }
 	
 }
