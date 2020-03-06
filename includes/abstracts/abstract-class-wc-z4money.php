@@ -85,7 +85,7 @@ if ( ! class_exists( 'Wc_Z4Money_Gateway' ) ) {
 			$this->logger->add( sprintf(__('Order refund process $amount: %s', 'wc-z4money'), $amount ) );
 			
 			$order            = wc_get_order( $order_id );
-			$payment_id       = $order->get_meta( 'PAYMENT_ID' );
+			$payment_id       = $order->get_meta( 'Z4MONEY_ID' ) ?: $order->get_meta( 'PAYMENT_ID' );
 			$order_status     = $this->api->get_status( $payment_id );
 			$order_status_id  = $order_status['venda']['status']['id'];
 			$real_amount      = $amount ?: $order->order_total;
@@ -120,8 +120,9 @@ if ( ! class_exists( 'Wc_Z4Money_Gateway' ) ) {
 		 */ 
 
 		public function webhook() 
-		{
-			@ob_clean();
+		{ @ob_clean();
+		
+			global $wpdb;
 			
 			$_payload =  json_decode( file_get_contents("php://input"), true );
 			
@@ -129,8 +130,13 @@ if ( ! class_exists( 'Wc_Z4Money_Gateway' ) ) {
 			
 			if( json_last_error() == JSON_ERROR_NONE ) {
 				
-				$order    = wc_get_orders( array( 'PAYMENT_ID' => $_payload['data']['id'] ) )[0];
-				$order_id = $order->get_order_number();
+				$order_id = absint( $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = 'Z4MONEY_ID' AND meta_value = %d", $_payload['data']['id'] ) ) );
+
+				// for old plugin version
+				if ( 0 === $order_id ) {
+					$order_id = absint( $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = 'PAYMENT_ID' AND meta_value = %d", $_payload['data']['id'] ) ) );
+				}
+				
 				$status   = $_payload['data']['status_pedido_id'];
 				
 				switch ( $status ) {
@@ -167,7 +173,7 @@ if ( ! class_exists( 'Wc_Z4Money_Gateway' ) ) {
 			global $woocommerce;
 
 			$order            = new WC_Order( $order_id );
-			$payment_id       = $order->get_meta('PAYMENT_ID') ?: false;
+			$payment_id       = $order->get_meta('Z4MONEY_ID') ?: $order->get_meta('PAYMENT_ID');
 			
 			if( $order->has_status( 'on-hold' ) ) {
 			

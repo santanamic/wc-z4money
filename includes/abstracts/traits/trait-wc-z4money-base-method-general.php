@@ -145,7 +145,7 @@ if ( ! class_exists( 'Wc_Z4Money_Base_Method_General' ) ) {
 				
 				case 'processing':
 					$order->update_status( 'processing' );
-					if( isset( $data['payment_id'] ) ) $order->add_meta_data('PAYMENT_ID', $data['payment_id'], true);
+					if( isset( $data['payment_id'] ) ) $order->add_meta_data('Z4MONEY_ID', $data['payment_id'], true);
 					if( isset( $data['url_boleto'] ) ) $order->add_meta_data('Z4MONEY_URL_BOLETO', $data['url_boleto'], true);
 					WC()->cart->empty_cart();
 				
@@ -153,7 +153,7 @@ if ( ! class_exists( 'Wc_Z4Money_Base_Method_General' ) ) {
 				
 				case 'on-hold':
 					$order->update_status( 'on-hold' );
-					if( isset( $data['payment_id'] ) ) $order->add_meta_data('PAYMENT_ID', $data['payment_id'], true);
+					if( isset( $data['payment_id'] ) ) $order->add_meta_data('Z4MONEY_ID', $data['payment_id'], true);
 					if( isset( $data['url_boleto'] ) ) $order->add_meta_data('Z4MONEY_URL_BOLETO', $data['url_boleto'], true);
 					WC()->cart->empty_cart();
 
